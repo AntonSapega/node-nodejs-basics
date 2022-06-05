@@ -1,7 +1,8 @@
 import { readFile } from "fs";
+import { __dirname } from "../globalPath.js";
 
 export const read = async () => {
-  const path = "./files/fileToRead.txt";
+  const path = `${__dirname(import.meta.url)}/files/fileToRead.txt`;
 
   readFile(path, "utf8", (err, data) => {
     if (err) {

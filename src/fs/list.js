@@ -1,7 +1,8 @@
 import { readdir } from "fs";
+import { __dirname } from "../globalPath.js";
 
 export const list = async () => {
-  const sourcePath = "./files";
+  const sourcePath = `${__dirname(import.meta.url)}/files`;
 
   readdir(sourcePath, (err, files) => {
     if (err) {

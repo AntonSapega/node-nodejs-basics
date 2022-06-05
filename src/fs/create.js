@@ -1,8 +1,9 @@
 import { stat, writeFile } from "fs";
+import { __dirname } from "../globalPath.js";
 
 export const create = async () => {
   const newFileName = "fresh.txt";
-  const fullPath = `./files/${newFileName}`;
+  const fullPath = `${__dirname(import.meta.url)}/files/${newFileName}`;
   const fileContent = "I am fresh and young";
 
   stat(fullPath, (err, stats) => {

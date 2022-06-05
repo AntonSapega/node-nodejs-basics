@@ -1,6 +1,8 @@
 import { cpus } from "os";
 import { Worker } from "worker_threads";
 
+import { __dirname } from "../globalPath.js";
+
 export const performCalculations = async () => {
   const coresAmount = cpus().length;
   const startNumber = 10;
@@ -17,7 +19,9 @@ function openWorkers(initialValue, limit) {
   const workers = [];
 
   for (let i = initialValue; i < limit; i++) {
-    const worker = new Worker("./worker.js", { workerData: i });
+    const worker = new Worker(`${__dirname(import.meta.url)}/worker.js`, {
+      workerData: i,
+    });
     const workerPromise = new Promise((resolve, reject) => {
       worker.on("message", (msg) => {
         resolve(msg);

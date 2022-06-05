@@ -1,8 +1,9 @@
-import { readdir, copyFile, mkdir, stat } from "fs";
+import { readdir, copyFile, mkdir } from "fs";
+import { __dirname } from "../globalPath.js";
 
 export const copy = async () => {
-  const sourcePath = "./files";
-  const copy = "./files_copy";
+  const sourcePath = `${__dirname(import.meta.url)}/files`;
+  const copy = `${__dirname(import.meta.url)}/files_copy`;
 
   readdir(sourcePath, (err, files) => {
     if (err) {
@@ -14,7 +15,7 @@ export const copy = async () => {
       }
     });
     files.forEach((file) => {
-      copyFile(`${sourcePath}/${file}`, `./${copy}/${file}`, () => {});
+      copyFile(`${sourcePath}/${file}`, `${copy}/${file}`, () => {});
     });
   });
 };
